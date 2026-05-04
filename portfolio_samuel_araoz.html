@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samuel Araoz | Desenvolvedor Back-End Jr</title>
+  <meta name="description" content="Portfólio profissional de Samuel Araoz, Desenvolvedor Back-End Júnior com foco em PHP, Laravel, MySQL, APIs e desenvolvimento web." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #06b6d4;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, .12), transparent 34%),
+        radial-gradient(circle at top right, rgba(6, 182, 212, .14), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 250, 252, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      padding: 74px 0 44px;
+      display: grid;
+      grid-template-columns: 1.4fr .8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: var(--primary-dark);
+      border: 1px solid #bfdbfe;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 7vw, 68px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s, background .18s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 16px 30px rgba(37, 99, 235, .22);
+    }
+
+    .btn-secondary {
+      background: white;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-circle {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 38px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 30px;
+      letter-spacing: -0.05em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .92);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, .04);
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tag.main {
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .date {
+      color: var(--primary-dark);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 4px;
+    }
+
+    footer {
+      padding: 34px 0;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .hero, .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="#">Samuel<span>Araoz</span></a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#skills">Skills</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="badge">💻 Back-End Developer Jr • PHP • Laravel • MySQL</div>
+        <h1>Desenvolvedor Back-End Júnior focado em soluções web.</h1>
+        <p>
+          Sou Samuel Araoz, desenvolvedor em início de carreira com prática em backend,
+          banco de dados, APIs e desenvolvimento web. Busco minha primeira grande oportunidade
+          profissional para crescer, aprender e contribuir com projetos reais.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:samuelaraozsalvatierra@gmail.com">Entrar em contato</a>
+          <a class="btn btn-secondary" href="https://github.com/Samu3009" target="_blank" rel="noopener">Ver GitHub</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="profile-circle">SA</div>
+        <h3>Samuel Araoz</h3>
+        <p style="color: var(--muted); margin: 8px 0 18px;">
+          Santa Catarina, Brasil
+        </p>
+        <div class="contact-list">
+          <span>📞 +55 67 99924-5006</span>
+          <span>✉️ samuelaraozsalvatierra@gmail.com</span>
+          <span>🔗 github.com/Samu3009</span>
+          <span>🌎 Espanhol • Português • Inglês técnico</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="sobre">
+      <div class="section-title">
+        <div>
+          <h2>Sobre mim</h2>
+          <p>Perfil profissional adaptado para vagas júnior de desenvolvimento.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p>
+          Tenho interesse em desenvolvimento back-end, especialmente com PHP, Laravel,
+          MySQL e integração de APIs. Também tenho experiência prática criando interfaces
+          web com HTML, CSS, Bootstrap e JavaScript básico.
+        </p>
+        <p>
+          Estou construindo projetos próprios para fortalecer meu portfólio e demonstrar
+          minha capacidade de aprender rápido, resolver problemas e trabalhar com dados,
+          autenticação e sistemas web.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">
+        <div>
+          <h2>Habilidades técnicas</h2>
+          <p>Tecnologias alinhadas a vagas de Back-End Developer Jr.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Back-End</h3>
+          <div class="tag-list">
+            <span class="tag main">PHP</span>
+            <span class="tag main">Laravel</span>
+            <span class="tag">APIs REST</span>
+            <span class="tag">Lógica de programação</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Banco de dados</h3>
+          <div class="tag-list">
+            <span class="tag main">MySQL</span>
+            <span class="tag main">SQL</span>
+            <span class="tag">CRUD</span>
+            <span class="tag">Modelagem básica</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Front-End</h3>
+          <div class="tag-list">
+            <span class="tag main">HTML5</span>
+            <span class="tag main">CSS3</span>
+            <span class="tag">Bootstrap</span>
+            <span class="tag">JavaScript básico</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="section-title">
+        <div>
+          <h2>Projetos</h2>
+          <p>Projetos práticos para mostrar evolução técnica.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>JobFinder AI</h3>
+          <p>
+            Plataforma web para busca de vagas no Brasil, com backend, integração com APIs,
+            normalização de dados, autenticação e painel administrativo.
+          </p>
+          <div class="tag-list">
+            <span class="tag main">FastAPI</span>
+            <span class="tag">APIs</span>
+            <span class="tag">JWT</span>
+            <span class="tag">HTML/CSS/JS</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Sistema CRUD Web</h3>
+          <p>
+            Sistema simples para cadastro, edição, listagem e exclusão de registros,
+            simulando fluxos comuns de aplicações web com banco de dados.
+          </p>
+          <div class="tag-list">
+            <span class="tag main">MySQL</span>
+            <span class="tag">SQL</span>
+            <span class="tag">CRUD</span>
+            <span class="tag">Backend</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="formacao">
+      <div class="section-title">
+        <div>
+          <h2>Formação e cursos</h2>
+          <p>Base técnica construída com cursos e prática contínua.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">2025</div>
+          <div>
+            <h3>Ensino Médio completo</h3>
+            <p>Formação concluída em 2025.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="date">2024 - 2025</div>
+          <div>
+            <h3>SQL Avançado — INFOCAL</h3>
+            <p>Estudo de consultas, estruturação de dados e práticas com banco de dados.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="date">2023</div>
+          <div>
+            <h3>Banco de Dados MySQL / SQL — Instituto Domingo Savio</h3>
+            <p>Fundamentos de banco de dados, comandos SQL e operações CRUD.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="date">2022</div>
+          <div>
+            <h3>Programação em Python — INFOCAL</h3>
+            <p>Fundamentos de programação, lógica, funções e estruturação de código.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="date">2021</div>
+          <div>
+            <h3>Programação em Java — Instituto Domingo Savio</h3>
+            <p>Conceitos de programação, lógica e estrutura orientada a objetos.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="date">2020</div>
+          <div>
+            <h3>Design de Páginas Web — EduTeca Bolivia</h3>
+            <p>Criação de páginas web com foco em estrutura, layout e apresentação visual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="section-title">
+        <div>
+          <h2>Contato</h2>
+          <p>Disponível para oportunidades como Desenvolvedor Back-End Jr.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <p><strong>Email:</strong> samuelaraozsalvatierra@gmail.com</p>
+        <p><strong>Telefone:</strong> +55 67 99924-5006</p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/Samu3009" target="_blank" rel="noopener">github.com/Samu3009</a></p>
+        <div class="actions" style="margin-top: 18px;">
+          <a class="btn btn-primary" href="mailto:samuelaraozsalvatierra@gmail.com">Enviar email</a>
+          <a class="btn btn-secondary" href="https://github.com/Samu3009" target="_blank" rel="noopener">Abrir GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Samuel Araoz — Desenvolvedor Back-End Jr
+    </div>
+  </footer>
+</body>
+</html>
